@@ -8,27 +8,67 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet  var buttonTapped: UIButton!
-    @IBOutlet  var viewShowTapped: UILabel!
     
-    private var valueTapped = 0
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var resetImage: UIImageView!
+    @IBOutlet weak var plusImage: UIImageView!
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var minusImage: UIImageView!
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
+    
+    
+    private var valueTapped: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewShowTapped.text = String(valueTapped)
-        buttonTapped.setTitle("Посчитать нажатие", for: .normal)
+        minusImage.tintColor = .blue
+        resetImage.tintColor = .gray
+        plusImage.tintColor = .red
         
-        viewShowTapped.tintColor = .gray
-        buttonTapped.tintColor = .gray
-        
+        textLabel.text = "0"
+        textView.isScrollEnabled = true
+        textView.isEditable = false
+        textView.backgroundColor = .brown
+        textView.layer.cornerRadius = 12
+     
     }
 
-    @IBAction func ButtonTapped(_ sender: Any) {
+    
+    
+    @IBAction func plusTapped(_ sender: Any) {
+        let currentDate = Date()
         valueTapped += 1
-        viewShowTapped.text = "Значение счетчика: \(String(valueTapped))"
+        textView.text.append("\(currentDate): значение счетчика изменено на +1\n")
+        textView.text.append(" \n")
+        textLabel.text = "История изменений: \(String(valueTapped))"
     }
+    
+    
+    @IBAction func resetTupped(_ sender: Any) {
+        let currentDate = Date()
+        textView.text = "\(currentDate): значение сброшено \n"
+        textView.text.append(" \n")
+        valueTapped = 0
+        textLabel.text = "0"
+    }
+    
+    
+    @IBAction func minusTapped(_ sender: Any) {
+        let currentDate = Date()
+        if valueTapped < 1 {
+            textView.text.append("\(currentDate):\n попытка уменьшить значение счётчика ниже 0 \n")
+            textView.text.append(" \n")
+        } else {valueTapped -= 1
+            textView.text.append("\(currentDate): значение счетчика изменено на -1\n")
+            textView.text.append(" \n")
+            textLabel.text = "История изменений: \(String(valueTapped))"
+        }
+
+    }
+    
     
 }
 
