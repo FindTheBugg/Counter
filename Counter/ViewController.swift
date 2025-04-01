@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var plusButton: UIButton!
