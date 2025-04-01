@@ -41,21 +41,19 @@ final class ViewController: UIViewController {
         let currentDate = Date()
         
         valueTapped += 1
-        textView.text.append("\(currentDate): значение счетчика изменено на +1\n")
+        textView.text.append("\(currentDate.toJustTime): значение счетчика изменено на +1\n")
         textView.text.append(" \n")
         textLabel.text = "История изменений: \(String(valueTapped))"
     }
     
-    
     @IBAction func resetTupped(_ sender: Any) {
         let currentDate = Date()
         
-        textView.text = "\(currentDate): значение сброшено \n"
+        textView.text = "\(currentDate.toJustTime): значение сброшено \n"
         textView.text.append(" \n")
         valueTapped = 0
         textLabel.text = "0"
     }
-    
     
     @IBAction func minusTapped(_ sender: Any) {
         let range = NSRange(location: textView.text.count - 1, length: 1)
@@ -64,15 +62,17 @@ final class ViewController: UIViewController {
         let currentDate = Date()
         
         if valueTapped < 1 {
-            textView.text.append("\(currentDate):\n попытка уменьшить значение счётчика ниже 0 \n")
+            textView.text.append("\(currentDate.toJustTime):\n попытка уменьшить значение счётчика ниже 0 \n")
             textView.text.append(" \n")
         } else {valueTapped -= 1
-            textView.text.append("\(currentDate): значение счетчика изменено на -1\n")
+            textView.text.append("\(currentDate.toJustTime): значение счетчика изменено на -1\n")
             textView.text.append(" \n")
             textLabel.text = "История изменений: \(String(valueTapped))"
         }
 
     }
     
+    
 }
+
 
