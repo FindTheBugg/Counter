@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     
-    
     private var valueTapped: Int = 0
     
     override func viewDidLoad() {
@@ -33,16 +32,14 @@ class ViewController: UIViewController {
         textView.isEditable = false
         textView.backgroundColor = .brown
         textView.layer.cornerRadius = 12
-        
-     
     }
-
-    
     
     @IBAction func plusTapped(_ sender: Any) {
         let range = NSRange(location: textView.text.count - 1, length: 1)
             textView.scrollRangeToVisible(range)
+        
         let currentDate = Date()
+        
         valueTapped += 1
         textView.text.append("\(currentDate): значение счетчика изменено на +1\n")
         textView.text.append(" \n")
@@ -52,6 +49,7 @@ class ViewController: UIViewController {
     
     @IBAction func resetTupped(_ sender: Any) {
         let currentDate = Date()
+        
         textView.text = "\(currentDate): значение сброшено \n"
         textView.text.append(" \n")
         valueTapped = 0
@@ -62,7 +60,9 @@ class ViewController: UIViewController {
     @IBAction func minusTapped(_ sender: Any) {
         let range = NSRange(location: textView.text.count - 1, length: 1)
             textView.scrollRangeToVisible(range)
+        
         let currentDate = Date()
+        
         if valueTapped < 1 {
             textView.text.append("\(currentDate):\n попытка уменьшить значение счётчика ниже 0 \n")
             textView.text.append(" \n")
